@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8" >
+    <title>Library</title>
+    <link href="webjars/bootstrap/4.1.3/css/bootstrap.min.css"  rel="stylesheet" type="text/css">
+    <link href="webjars/font-awesome/5.12.0/css/all.css" th:href="@{/webjars/font-awesome/5.12.0/css/all.css}" rel="stylesheet" TYPE="text/css">
+</head>
+<body>
+<script>
+
+    function logout() {
+        if (confirm("Do you really want to sign off" )) {
+            open("/logout", "_top");
+        }
+    }
+
+</script>
+<div class="container">
+    <span>USER</span>
+    <span sec:authentication="name" style="color: orangered;"></span>
+    <button class="btn btn-outline-danger fa-pull-right"
+            th:onclick="'logout();'">
+        <i class="fa fa-fw fa-sign-out-alt"></i>Sign Out</button>
+</div>
+<div class="container my-2">
+    <div class="card">
+        <div class="card-body">
+            <div th:switch="${businessCards}" class="container my-5">
+<p class="my-5">
+    <a th:href="@{/add-business-card}"   class="btn btn-primary">
+        <i class="fas fa-business-time ml-2">Add business card</i>
+    </a>
+
+</p>
+<div class="col-md-12">
+    <h2 th:case="null">No Data</h2>
+    <div th:case="*">
+        <table class="table table-striped table-responsive-md">
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Company</th>
+                <th>Email</th>
+                <th>Telephone</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="businessCard : ${businessCards}">
+                <td th:text="${businessCard.name}"></td>
+                <td th:text="${businessCard.companyName}"></td>
+                <td th:text="${businessCard.email}"></td>
+                <td th:text="${businessCard.telephone}" ></td>
+                <td>
+                    <a th:href="@{/}"
+                       class="btn btn-outline-primary">
+                        <i class="fa fa-sign-in-alt text-warning"></i>
+                    </a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+        </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

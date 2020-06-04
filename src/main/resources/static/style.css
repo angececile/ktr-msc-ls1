@@ -1,0 +1,10 @@
+
+
+.errorlist{
+    color:red;
+    font-size:10px;
+    padding:0;
+    margin-bottom:-7px;
+    margin-left:3%;
+    list-style-type:none;
+}

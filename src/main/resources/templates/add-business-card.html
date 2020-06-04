@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <link href="webjars/bootstrap/4.1.3/css/bootstrap.min.css"  rel="stylesheet" type="text/css">
+    <link href="webjars/font-awesome/5.12.0/css/all.css" th:href="@{/webjars/font-awesome/5.12.0/css/all.css}" rel="stylesheet" TYPE="text/css">
+
+    <title>Add Business card</title>
+</head>
+<body>
+<div class="container">
+    <div class="card card-register mx-auto mt-5">
+        <div class="card-header">
+            <span class="fa fa-user text-success"></span> Add a business card
+        </div>
+        <div class="card-body">
+            <form name="f" th:action="@{/saveBusinessCard}" method="post" th:object="${businessCard}">
+                <fieldset>
+
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" th:field="*{name}" class="form-control" id="name" name="name"
+                               placeholder="Nom"/>
+                        <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="errorlist"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="companyName">Company Name</label>
+                        <input type="text" th:field="*{companyName}" class="form-control" id="companyName" name="companyName"
+                               placeholder="Name of the company"/>
+                        <span th:if="${#fields.hasErrors('companyName')}" th:errors="*{companyName}" class="errorlist"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" th:field="*{email}" class="form-control" id="email" name="email"
+                               placeholder="email"/>
+                        <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="errorlist"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="telephone">Telephone</label>
+                        <input type="number" th:field="*{telephone}" class="form-control" id="telephone" name="telephone"
+                               placeholder="Telephone"/>
+                        <span th:if="${#fields.hasErrors('telephone')}" class="errorlist">Numéro invalide</span>
+                    </div>
+
+
+                    <div class="form-actions" style="margin-top: 3%;">
+                        <button type="submit" class="btn btn-success">Save</button>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>
